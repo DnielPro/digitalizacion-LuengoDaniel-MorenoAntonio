@@ -1,0 +1,142 @@
+--Ejercicio 1--
+Escribe un programa que le pida al usuario dos enteros, de manera que el primero sea menor que el
+segundo, sino se cumple esta condición los volveremos a pedir hasta que se cumpla. Una vez
+introducidos correctamente mostraremos la suma de todos los enteros comprendidos entre ambos
+números incluidos ellos. Por ejemplo para los números 3 y 7, la suma seria 25.
+
+numero1 = int(input('Introduce el primer número: '))
+numero2 = int(input('Introduce el segundo número: '))
+suma = 0
+
+while numero1 > numero2:
+    print('ERROR! Debe hacer que el primer número sea más pequeño que el segundo')
+    numero1 = int(input('Introduce el primer número: '))
+    numero2 = int(input('Introduce el segundo número: '))
+
+for comprendidos in range(numero1, numero2+1):
+        suma += comprendidos
+
+print(f'La suma total de todos los enteros comprendidos entre {numero1} y {numero2} es de: {suma}')
+
+    
+--Ejercicio 2--
+Escribe un programa que lea números enteros positivos hasta que se introduzca un 0. El programa
+deberá mostrar por pantalla la cantidad de números leídos, el mayor, el menor y la media de los
+números leídos.
+
+cantidad = 0
+total = 0
+media = 0
+
+numero = int(input('Introduce un número positivo(0 para teminar): '))
+while numero < 0:
+    print('Debe ser un número positivo: ')
+    numero = int(input('Introduce un número positivo(0 para teminar): '))
+    
+mayor = numero
+menor = numero
+
+while numero != 0:
+    if numero < 0:
+        print('Debe ser un número positivo: ')
+    else:
+        if numero > mayor:
+            mayor = numero
+        if numero != 0 and numero < menor:
+            menor = numero
+        cantidad += 1
+        total += numero
+    numero = int(input('Introduce un número positivo (0 para teminar): '))
+
+if total != 0:
+    media = total / cantidad
+
+print('--------------------------------------')
+print(f'La cantidad de números introducidos: {cantidad}\nEl mayor número: {mayor}\nEl menor número: {menor}\nLa media de los números: {media}')
+
+
+
+--Ejercicio 3--
+Escriba un programa que pida al usuario su nombre y contraseña y le de tres oportunidades para
+introducir los datos correctos, que serán root y 1234. Si los datos introducidos son correctos se
+mostrará por pantalla “Bienvenido al sistema”. En caso contrario se mostrará un mensaje por
+pantalla indicando que se ha superado el número de intentos permitido.
+
+intentos = 0
+accede=False
+
+while intentos < 3 and not accede:
+    user = input('Introduzca su usuario: ')
+    password = input('Introduzca su contraseña: ')
+    if user == 'root' and password == '1234':
+        print('----------------------\nBienvenido al sistema')
+        accede = True
+    else:
+        print('----------------------\nUsuario o contraseña incorrectas.\n')
+    intentos += 1
+
+if not accede:
+    print('----------------------\nInicio de sesión fallido, has superado el límite de intentos')
+
+
+
+--Ejercicio 4--
+Escriba un programa que solicite números al usuario hasta que se hayan introducido 10 números o
+la suma de todos los números leídos sea mayor que 100. A continuación mostrar un mensaje
+indicando qué condición se ha cumplido (es decir, si se han introducido 10 números o si su suma es
+mayor que 100).
+
+cant_num = 0
+suma_num = 0
+
+while (cant_num != 10) and (suma_num <= 100):
+    numero = int(input('Introduce un número: '))
+    cant_num += 1
+    suma_num += numero
+    
+if cant_num >= 10:
+    print(f'------------\nSe ha introducido el máximo de {cant_num} números')
+if suma_num >= 100:
+    print(f'------------\nSe ha introducido una suma total de {suma_num}, superando el límite de 100')
+
+
+
+
+--Ejercicio 5--
+Escriba un programa que permita calcular el importe de una factura, a partir de una serie de
+artículos vendidos. Para ello, el programa irá preguntando para cada artículo la cantidad de unidades
+vendidas y el precio unitario. El programa comprobará que tanto el precio como la cantidad son
+números positivos, y en caso contrario volverá a solicitar los valores. La lectura de artículos acabará
+cuando se introduzca un 0 en la primera pregunta. Entonces se imprimirá por pantalla el importe
+total de la factura
+
+total = 0
+
+articulo = input('Introduce el artículo (0 para terminar): ')
+
+while articulo != '0':
+    unidades = int(input('Introduzca el número de unidades del artículo: '))
+    precio = float(input('Introduzca el precio por unidad del artículo: '))
+    if unidades < 0 or precio < 0:
+        print('Las unidades o los precios deben ser positivos.')
+    else:
+        precio_articulo = unidades * precio
+        total += precio_articulo
+        articulo = input('Introduce el artículo (0 para terminar): ')
+
+print(f'El importe total es de: {total}€')
+
+Otra manera:
+total = 0
+
+unidades_vendidas = int(input('Introduce la cantidad de unidades vendidas (0 para terminar): '))
+
+while unidades_vendidas != 0:
+    precio = int(input('Introduce el precio unitario: '))
+    if unidades_vendidas > 0 and precio > 0:
+        total += (precio*unidades_vendidas)
+    else:
+        print('Debes introducir un número positivo')
+    unidades_vendidas = int(input('Introduce la cantidad de unidades vendidas (0 para terminar): '))
+
+print(f'-----------------------\nEl importe total es de: {total}€')
